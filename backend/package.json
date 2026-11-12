@@ -1,0 +1,12 @@
+{
+  "name": "sunday-pop-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SUNDAY POP API (Node 22+, zero npm dependencies, SQLite)",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node src/seed.js",
+    "test": "node --test --no-warnings test/*.test.js"
+  }
+}
