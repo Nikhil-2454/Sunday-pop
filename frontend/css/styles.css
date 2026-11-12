@@ -1,4 +1,4 @@
- :root{--cream:#F5F0E6;--white:#fff;--ink:#171717;--gold:#C9A66B;--grey:#77736D;--line:#E5DED1;--bg:var(--cream);--panel:var(--white);--fg:var(--ink);
+:root{--cream:#F5F0E6;--white:#fff;--ink:#171717;--gold:#C9A66B;--grey:#77736D;--line:#E5DED1;--bg:var(--cream);--panel:var(--white);--fg:var(--ink);
 --serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1815;--panel:#26221F;--fg:#f5f0e6;--grey:#bdb4a8;--line:#3d3730}}
 :root[data-theme="dark"]{--bg:#1b1815;--panel:#26221F;--fg:#f5f0e6;--grey:#bdb4a8;--line:#3d3730}
@@ -107,3 +107,5 @@ img,svg,video{max-width:100%;height:auto}
 /* Hover effects only where hover exists */
 @media(hover:none){.card:hover{transform:none;box-shadow:none}.btn:hover{background:var(--fg);color:var(--bg)}.btn.o:hover{background:transparent;color:var(--fg)}}
 @media(min-width:801px){.hero .ph{aspect-ratio:1/1;max-height:70vh;width:100%}}
+
+.ph.product-photo{display:block;background:#f5f0e6}.ph.product-photo img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .5s}.card:hover .ph.product-photo img{transform:scale(1.04)}

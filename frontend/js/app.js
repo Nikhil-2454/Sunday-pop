@@ -7,8 +7,9 @@ const P=[
 const $=s=>document.querySelector(s),R=n=>'₹'+n;
 const CO={classic:['Classic Favourites','Timeless flavours, done carefully.'],japanese:['Japanese Inspired','Tea, soy, sesame and umami, in popcorn form.'],signature:['Signature Experiences','Bolder blends and a box to explore them all.']};
 P.length=0;P.push(...[
-['classic-sea-salt','Classic Sea Salt','Savoury','#F3E8C8','Light, crisp and simply salted.','The baseline every other flavour is measured against.',89,'classic',100,40,0,1,'Popcorn kernels, oil, sea salt','None declared'],
-['golden-butter','Golden Butter','Sweet','#F3E2B3','Warm cream and golden butter.','Rich and buttery, with a gentle salt finish.',99,'classic',100,35,0,1,'Popcorn kernels, butter-flavour seasoning, salt','Milk'],
+['cheese-burst','Cheese Burst','Savoury','#F6A13A','A cheesy DIY popcorn kit.','Bold cheese-inspired flavour for a fresh popcorn experience.',109,'classic',100,35,0,1,'To be confirmed','To be confirmed'],
+['butter-blast','Butter Blast','Sweet','#F3E2B3','A buttery DIY popcorn kit.','Warm buttery flavour for a movie-night popcorn experience.',99,'classic',100,35,0,1,'To be confirmed','To be confirmed'],
+['peri-peri','Peri Peri','Spicy','#E4693B','A spicy peri-peri DIY popcorn kit.','Tangy peri-peri flavour with a bold kick.',119,'classic',100,28,3,1,'To be confirmed','To be confirmed'],
 ['sweet-caramel','Sweet Caramel','Sweet','#D9A66B','Slow-cooked caramel, light crunch.','Sweet, toasty and a little nostalgic.',119,'classic',120,25,0,0,'Popcorn kernels, sugar, butter, salt','Milk'],
 ['dark-chocolate','Dark Chocolate','Sweet','#7B5A44','Bittersweet chocolate coating.','Deep cocoa notes against a crisp kernel.',139,'classic',120,0,0,0,'Popcorn kernels, dark chocolate, sugar','Milk, soy'],
 ['matcha-inspired','Matcha Inspired','Sweet','#B8C79A','Green-tea notes, soft sweetness.','Earthy, calm and lightly sweet.',149,'japanese',100,18,0,0,'Popcorn kernels, matcha-style seasoning, sugar','Milk'],
@@ -28,7 +29,8 @@ function toast(m){const d=document.createElement('div');d.textContent=m;$('#ts')
 function badge(){const c=Object.values(cart).reduce((a,b)=>a+b,0);$('#cn').textContent=c;$('#wn').textContent=wish.length;['#cn','#wn'].forEach(i=>{$(i).classList.remove('bump');void $(i).offsetWidth;$(i).classList.add('bump')});sv('sp_cart',cart);sv('sp_wish',wish)}
 function add(s,q=1){if(find(s).st<1){toast('Out of stock');return}cart[s]=(cart[s]||0)+q;badge();toast(find(s).n+' added to bag')}
 function wt(s){const i=wish.indexOf(s);i<0?wish.push(s):wish.splice(i,1);badge();route()}
-const ph=p=>`<div class="ph" style="background:${p.c}"><b>${p.n.split(' ')[0]}</b><small>Photo placeholder</small></div>`;
+const PRODUCT_SAMPLE_IMAGES={'cheese-burst':'/assets/products/cheese-burst/main.webp','butter-blast':'/assets/products/butter-blast/main.webp','peri-peri':'/assets/products/peri-peri/main.webp'};
+const ph=p=>{const src=PRODUCT_SAMPLE_IMAGES[p.s];return src?`<div class="ph product-photo" style="background:${p.c}"><img src="${src}" alt="${p.n} SUNDAY POP DIY popcorn kit sample packaging" loading="lazy"></div>`:`<div class="ph" style="background:${p.c}"><b>${p.n.split(' ')[0]}</b><small>Sample image pending</small></div>`};
 function card(p){const w=wish.includes(p.s);return `<article class="card"><a href="#product-${p.s}" style="text-decoration:none">${ph(p)}</a><div class="b"><div class="row" style="justify-content:space-between"><h3>${p.n}</h3><button class="hw ${w?'on':''}" data-w="${p.s}" aria-label="Wishlist ${p.n}">${w?'♥':'♡'}</button></div><div class="mu sm">${p.d}</div><div class="row"><span class="tag">${p.t}</span><span class="pr">${R(p.p)}</span><span class="mu sm">sample</span></div><div class="row"><a class="btn o sm" href="#product-${p.s}">View product</a><button class="btn o sm" data-qv="${p.s}">Quick view</button>${LIVE_COMMERCE?`<button class="btn sm" data-a="${p.s}">Add to cart</button>`:''}</div></div></article>`}
 const NAV=[['shop','Shop'],['flavours','Flavours'],['concept','Our Concept'],['story','Our Story'],['track-order','Track Order']];
 function nav(h){const l=NAV.map(([k,t])=>`<a href="#${k}" class="${h===k?'on':''}">${t}</a>`).join('');$('#nv').innerHTML=l;$('#dd').innerHTML=l+`<a href="#sign-in">Sign in</a><a href="#early-access">Early Access</a>`}
